@@ -47,6 +47,10 @@
         <li>Status: Not Completed</li>
         {% endif %}
       </ul>
+      <div>
+        <a href="{% url 'like' task.id %}">
+          Like: {{ Task.like }}
+        </a>
     </div>
     {% endfor %}
   </body>
