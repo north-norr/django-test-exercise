@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404
 from django.utils.timezone import make_aware
 from django.utils.dateparse import parse_datetime
 from todo.models import Task
-
+from django.db.models import F
 # Create your views here.
 
 
@@ -79,3 +79,10 @@ def like(request, task_id):
         raise Http404("task does not exist")
 
     return redirect(detail, task_id)
+
+def task_detail(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    task.view_count = F('view_count') + 1
+    task.save()
+    task.refresh_from_db()  # データベースの最新の値を取得
+    return render(request, 'task_detail.html', {'task': task})
