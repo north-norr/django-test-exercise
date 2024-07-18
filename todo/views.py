@@ -61,17 +61,6 @@ def update(request, task_id):
     }
     return render(request, "todo/edit.html", context)
 
-<<<<<<< HEAD
-def like(request, task_id):
-    try:
-        task = Task.objects.get(pk=task_id)
-        task.like += 1
-        task.save()
-    except task.DoesNotExist:
-        raise Http404("task does not exist")
-
-    return redirect(detail, task_id)
-=======
 def close(request, task_id):
     try:
         task = Task.objects.get(pk=task_id)
@@ -81,4 +70,12 @@ def close(request, task_id):
     task.save()
     return redirect(index)
 
->>>>>>> 85bed2ebff8ebd4a8189ca78758294d45bb0a502
+def like(request, task_id):
+    try:
+        task = Task.objects.get(pk=task_id)
+        task.like += 1
+        task.save()
+    except task.DoesNotExist:
+        raise Http404("task does not exist")
+
+    return redirect(detail, task_id)
