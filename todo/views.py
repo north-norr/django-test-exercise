@@ -70,3 +70,11 @@ def like(request, task_id):
         raise Http404("task does not exist")
 
     return redirect(detail, task_id)
+def close(request, task_id):
+    try:
+        task = Task.objects.get(pk=task_id)
+    except Task.DoesNotExist:
+        raise Http404("Task does not exist")
+    task.completed = True
+    task.save()
+    return redirect(index)
