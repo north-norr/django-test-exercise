@@ -70,6 +70,16 @@ def close(request, task_id):
     task.save()
     return redirect(index)
 
+def like(request, task_id):
+    try:
+        task = Task.objects.get(pk=task_id)
+        task.like += 1
+        task.save()
+    except task.DoesNotExist:
+        raise Http404("task does not exist")
+
+    return redirect(detail, task_id)
+
 def task_detail(request, pk):
     task = get_object_or_404(Task, pk=pk)
     task.view_count = F('view_count') + 1

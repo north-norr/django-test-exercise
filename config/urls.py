@@ -25,6 +25,8 @@ urlpatterns = [
     path('<int:task_id>/update', todo_views.update, name='update'),
     path('<int:task_id>/delete', todo_views.delete, name='delete'),
     path('<int:task_id>/delete', todo_views.delete, name='delete'),
+    path('<int:task_id>/like',, todo_views.like, name='like'),
+    path('<int:task_id>/like', views.like, name='like'),
     path('<int:task_id>/close', todo_views.close, name='close'),
     ]
 

@@ -7,6 +7,7 @@ class Task(models.Model):
     completed = models.BooleanField(default=False)
     posted_at = models.DateTimeField(default=timezone.now)
     due_at = models.DateTimeField(null=True, blank=True)
+    like = models.IntegerField(default=0)
     view_count = models.PositiveIntegerField(default=0)
 
     def is_overdue(self, dt):

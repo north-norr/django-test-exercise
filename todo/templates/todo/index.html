@@ -48,6 +48,10 @@
         {% endif %}
         <li>View count: {{ task.view_count }}</li>
       </ul>
+      <div>
+        <a href="{% url 'like' task.id %}">
+          Like: {{ Task.like }}
+        </a>
     </div>
     {% endfor %}
   </body>
